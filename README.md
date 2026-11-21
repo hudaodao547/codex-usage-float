@@ -14,7 +14,7 @@
 
 ## 普通用户安装
 
-1. 从 [Releases 发布页面](https://github.com/hudaodao547/codex-usage-float/releases) 下载 `codex-usage-float-v0.1.0-macos-universal.zip`，可用随附的 `.sha256` 核对完整性。
+1. 下载 [macOS Universal 安装包](https://github.com/hudaodao547/codex-usage-float/raw/refs/heads/main/downloads/codex-usage-float-v0.1.0-macos-universal.zip)，可用 [SHA-256 校验文件](downloads/codex-usage-float-v0.1.0-macos-universal.zip.sha256) 核对完整性；[Releases](https://github.com/hudaodao547/codex-usage-float/releases) 中提供版本说明。
 2. 解压，将“Codex用量悬浮窗.app”拖入“应用程序”（也可以放在自己的 `~/Applications`）。
 3. 双击打开。首次查询可能需要几十秒。
 4. 将它拖到喜欢的位置，点击右上角锁图标固定。锁定后不再随手误拖，退出重开仍恢复原位。需要换位置时再次点击解锁。

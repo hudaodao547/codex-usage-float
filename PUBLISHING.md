@@ -6,7 +6,7 @@
 
 建议公开仓库名：`codex-usage-float`。
 
-仓库内容是本文件所在目录中除 `dist` 以外的源码、Skill、许可证与说明。创建 v0.1.0 Release 后，上传构建工具生成的 Universal ZIP 和 `.sha256`，不要上传开发者偏好设置、真实用量数据、桌面截图或登录文件。
+仓库内容是本文件所在目录中除 `dist` 以外的源码、Skill、许可证与说明。当前下载文件位于 `downloads/`。创建 v0.1.0 Release 时，在发布说明中链接构建工具生成的 Universal ZIP 和 `.sha256`，不要上传开发者偏好设置、真实用量数据、桌面截图或登录文件。
 
 Release 说明：首次预览版；macOS 13+；Apple Silicon 已实机验证；Intel 仅编译验证；ad-hoc 签名，未公证；依赖实验性 Codex app-server 用量接口。此版本不设自动更新。
 
