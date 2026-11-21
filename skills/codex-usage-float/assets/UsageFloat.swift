@@ -142,16 +142,16 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
  var error: String?
  var timer: Timer?
  var ticker: Timer?
- var pinned=true
+ var pinned=false
  func label(_ text:String,_ size:CGFloat,_ weight:NSFont.Weight = .regular)->NSTextField {
   let l=NSTextField(labelWithString:text);l.font = .systemFont(ofSize:size,weight:weight);l.lineBreakMode = .byTruncatingTail;l.textColor = .white;return l
  }
  func applicationDidFinishLaunching(_ n:Notification) {
   NSApp.setActivationPolicy(.accessory)
   panel=Panel(contentRect:NSRect(x:0,y:0,width:338,height:158),styleMask:[.borderless,.nonactivatingPanel],backing:.buffered,defer:false)
-  panel.title="Codex 用量";panel.isFloatingPanel=true;panel.level = .floating
+  panel.title="Codex 用量";panel.isFloatingPanel=false;applyDisplayMode()
   panel.hidesOnDeactivate=false;panel.isOpaque=false;panel.backgroundColor = .clear;panel.hasShadow=true
-  panel.collectionBehavior=[.canJoinAllSpaces,.fullScreenAuxiliary]
+  applyDisplayMode()
   panel.isMovableByWindowBackground=true;panel.isReleasedWhenClosed=false
   panel.setFrameAutosaveName("CodexUsageFloatGlass")
   panel.delegate=self
@@ -198,7 +198,7 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
  }
  func makeMenu()->NSMenu {
   let menu=NSMenu()
-  for (title,selector) in [(positionLocked ? "解锁位置（允许拖动）" : "锁定当前位置",#selector(togglePositionLock)),("立即刷新",#selector(refresh)),(pinned ? "取消置顶" : "保持置顶",#selector(togglePin))] {
+  for (title,selector) in [(positionLocked ? "解锁位置（允许拖动）" : "锁定当前位置",#selector(togglePositionLock)),("立即刷新",#selector(refresh)),(pinned ? "切换为桌面小组件（不遮挡应用）" : "切换为始终置顶（覆盖应用）",#selector(togglePin))] {
    let item=NSMenuItem(title:title,action:selector,keyEquivalent:"");item.target=self;menu.addItem(item)
   }
   let opacity=NSMenuItem(title:"透明程度",action:nil,keyEquivalent:"")
@@ -222,7 +222,15 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
   savePosition();applyPositionLock();panel.contentView?.menu=makeMenu()
  }
  @objc func refresh(){status.stringValue="正在刷新…";client.refresh()}
- @objc func togglePin(){pinned.toggle();panel.level=pinned ? .floating : .normal;panel.contentView?.menu=makeMenu()}
+ func applyDisplayMode(){
+  pinned=UserDefaults.standard.bool(forKey:"alwaysOnTop")
+  panel.isFloatingPanel=pinned
+  panel.level=pinned ? .floating : NSWindow.Level(rawValue:Int(CGWindowLevelForKey(.desktopIconWindow))+1)
+  panel.collectionBehavior=pinned ? [.canJoinAllSpaces,.fullScreenAuxiliary] : [.canJoinAllSpaces,.stationary,.ignoresCycle,.fullScreenNone]
+ }
+ @objc func togglePin(){
+  UserDefaults.standard.set(!pinned,forKey:"alwaysOnTop");applyDisplayMode();panel.contentView?.menu=makeMenu()
+ }
  @objc func setOpacity(_ sender:NSMenuItem){glass.alphaValue=Double(sender.tag)/100;UserDefaults.standard.set(glass.alphaValue,forKey:"glassOpacity");panel.contentView?.menu=makeMenu()}
  func received(_ result:[String:Any]?,_ e:String?) {
   error=e

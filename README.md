@@ -18,7 +18,7 @@
 2. 解压，将“Codex用量悬浮窗.app”拖入“应用程序”（也可以放在自己的 `~/Applications`）。
 3. 双击打开。首次查询可能需要几十秒。
 4. 将它拖到喜欢的位置，点击右上角锁图标固定。锁定后不再随手误拖，退出重开仍恢复原位。需要换位置时再次点击解锁。
-5. `···` 菜单可立即刷新、调透明度、置顶或退出。重置时间使用电脑本地时区。
+5. 默认是桌面小组件模式，其他应用可盖住它，最大化或全屏时不会盖在工作内容上方。锁定位置仅防止拖动，与置顶无关。`···` 菜单可立即刷新、调透明度、切换始终置顶或退出；显示模式会保存。重置时间使用电脑本地时区。
 
 **签名说明：** 当前发布包只有本地 ad-hoc 签名，没有购买 Apple Developer ID，也没有 Apple 公证。macOS 可能拦截。请先核实来源；若决定继续，按“系统设置 → 隐私与安全性”中的系统提示处理。不要关闭系统安全保护或执行移除隔离属性的命令。校验值只能验证文件完整性，不能保证软件无风险。
 
@@ -69,4 +69,4 @@ python3 skills/codex-usage-float/scripts/manage.py install --app dist/Codex用�
 
 ## English
 
-An unofficial macOS floating widget for Codex five-hour and weekly remaining quota. Frosted transparent background, white text, position locking, always-on-top, and one-minute refresh. Requires macOS 13+, a working signed-in Codex installation, and availability of its experimental app-server usage endpoint. Universal builds contain Apple Silicon and Intel; only Apple Silicon has been runtime-tested. Releases are ad-hoc signed, not Developer ID signed or notarized. No developer-operated backend or credential collection. See the build commands above and the privacy statement before installing.
+An unofficial macOS floating widget for Codex five-hour and weekly remaining quota. Frosted transparent background, white text, position locking, optional always-on-top, desktop mode by default, and one-minute refresh. Requires macOS 13+, a working signed-in Codex installation, and availability of its experimental app-server usage endpoint. Universal builds contain Apple Silicon and Intel; only Apple Silicon has been runtime-tested. Releases are ad-hoc signed, not Developer ID signed or notarized. No developer-operated backend or credential collection. See the build commands above and the privacy statement before installing.
