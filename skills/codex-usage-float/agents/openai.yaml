@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 用量悬浮窗"
+  short_description: "安装管理 Mac 透明用量小窗，查看五小时及每周剩余额度并锁定桌面位置"
+  default_prompt: "使用 $codex-usage-float 帮我在 Mac 安装并打开 Codex 用量悬浮窗。"
